@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MBT新手村 — 从零开始的心智化治疗学习网站</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        mbt: {
+          blue: '#4A90D9',
+          green: '#5CB85C',
+          orange: '#F0AD4E',
+          red: '#D9534F',
+          purple: '#7B61FF',
+          teal: '#20B2AA',
+          dark: '#2C3E50',
+          light: '#F8FAFC'
+        }
+      }
+    }
+  }
+}
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+* { font-family: 'Noto Sans SC', sans-serif; }
+html { scroll-behavior: smooth; }
+.level-card { transition: all 0.3s ease; }
+.level-card:hover { transform: translateY(-4px); box-shadow: 0 12px 25px -8px rgba(0,0,0,0.15); }
+.dimension-card { transition: all 0.3s ease; cursor: pointer; }
+.dimension-card:hover { transform: scale(1.02); }
+.mode-card { transition: all 0.3s ease; }
+.mode-card:hover { box-shadow: 0 8px 20px -6px rgba(0,0,0,0.12); }
+.principle-item { transition: background 0.2s ease; }
+.principle-item:hover { background: #F0F7FF; }
+.fade-in { animation: fadeIn 0.5s ease forwards; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.slide-indicator { transition: all 0.3s ease; }
+.nav-link.active { color: #4A90D9; border-bottom: 2px solid #4A90D9; }
+.progress-step.active .step-circle { background: #4A90D9; color: white; border-color: #4A90D9; }
+.progress-step.completed .step-circle { background: #5CB85C; color: white; border-color: #5CB85C; }
+.tab-btn.active-tab { background: #4A90D9; color: white; }
+.mbt-tooltip { position: relative; }
+.mbt-tooltip:hover .tooltip-text { opacity: 1; visibility: visible; }
+.tooltip-text { opacity: 0; visibility: hidden; transition: all 0.2s; }
+</style>
+</head>
+<body class="bg-mbt-light text-gray-800">
+
+<!-- ========== NAVBAR ========== -->
+<nav class="fixed top-0 w-full bg-white/95 backdrop-blur shadow-sm z-50 border-b border-gray-100">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+    <a href="#" onclick="showSection('home')" class="flex items-center gap-2 text-mbt-dark font-bold text-lg">
+      <span class="w-8 h-8 bg-mbt-blue rounded-lg flex items-center justify-center text-white text-sm">MBT</span>
+      <span class="hidden sm:inline">新手村</span>
+    </a>
+    <div class="flex items-center gap-1 sm:gap-3 text-sm overflow-x-auto">
+      <a href="#" onclick="showSection('home')" class="nav-link px-2 py-1 whitespace-nowrap" data-section="home">首页</a>
+      <a href="#" onclick="showSection('level1')" class="nav-link px-2 py-1 whitespace-nowrap" data-section="level1">L1.心智化</a>
+      <a href="#" onclick="showSection('level2')" class="nav-link px-2 py-1 whitespace-nowrap" data-section="level2">L2.非心智化</a>
+      <a href="#" onclick="showSection('level3')" class="nav-link px-2 py-1 whitespace-nowrap" data-section="level3">L3.三种心智位</a>
+      <a href="#" onclick="showSection('level4')" class="nav-link px-2 py-1 whitespace-nowrap" data-section="level4">L4.治疗师姿态</a>
+      <a href="#" onclick="showSection('level5')" class="nav-link px-2 py-1 whitespace-nowrap" data-section="level5">L5.ACS自检</a>
+      <a href="#" onclick="showSection('level6')" class="nav-link px-2 py-1 whitespace-nowrap" data-section="level6">L6.案例整合</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ========== HOME SECTION ========== -->
+<div id="section-home" class="section-content pt-16">
+  <!-- Hero -->
+  <div class="bg-gradient-to-br from-mbt-dark via-slate-700 to-mbt-blue text-white">
+    <div class="max-w-5xl mx-auto px-4 py-20 sm:py-28">
+      <div class="max-w-3xl">
+        <span class="inline-block px-3 py-1 bg-white/20 rounded-full text-sm mb-4">心智化治疗 · 系统学习路径</span>
+        <h1 class="text-4xl sm:text-5xl font-black leading-tight mb-4">从零开始<br>成为MBT治疗师</h1>
+        <p class="text-lg sm:text-xl text-white/80 mb-8 leading-relaxed">一个结构化的心智化治疗学习网站，从核心概念到临床实践，逐级深入。基于Bateman & Fonagy的MBT框架及Karterud & Bateman（2012）17项干预原则。</p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#" onclick="showSection('level1')" class="px-6 py-3 bg-white text-mbt-dark rounded-xl font-bold hover:bg-gray-100 transition">开始学习 →</a>
+          <a href="#overview" class="px-6 py-3 bg-white/10 text-white rounded-xl font-medium hover:bg-white/20 transition backdrop-blur">了解路径</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 学习路径总览 -->
+  <div id="overview" class="max-w-5xl mx-auto px-4 py-16">
+    <h2 class="text-2xl font-bold text-center mb-3">六阶学习路径</h2>
+    <p class="text-gray-500 text-center mb-12 max-w-2xl mx-auto">从心智化的基本概念出发，逐级深入非心智化模式、心智位置、治疗师姿态，最终整合到临床案例中。</p>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="level-card bg-white rounded-2xl p-6 border border-gray-100">
+        <div class="w-10 h-10 bg-mbt-blue rounded-xl flex items-center justify-center text-white font-bold mb-4">L1</div>
+        <h3 class="font-bold text-lg mb-2">什么是心智化</h3>
+        <p class="text-gray-600 text-sm mb-3">心智化的定义、Fonagy的理论起源、四个维度的基本框架。</p>
+        <span class="text-mbt-blue text-sm font-medium">核心概念 →</span>
+      </div>
+      <div class="level-card bg-white rounded-2xl p-6 border border-gray-100">
+        <div class="w-10 h-10 bg-mbt-orange rounded-xl flex items-center justify-center text-white font-bold mb-4">L2</div>
+        <h3 class="font-bold text-lg mb-2">三个非心智化模式</h3>
+        <p class="text-gray-600 text-sm mb-3">精神等同、假装模式、目的论模式——临床识别与干预。</p>
+        <span class="text-mbt-orange text-sm font-medium">模式识别 →</span>
+      </div>
+      <div class="level-card bg-white rounded-2xl p-6 border border-gray-100">
+        <div class="w-10 h-10 bg-mbt-green rounded-xl flex items-center justify-center text-white font-bold mb-4">L3</div>
+        <h3 class="font-bold text-lg mb-2">I/Me/We 心智位</h3>
+        <p class="text-gray-600 text-sm mb-3">主体自我、客体自我、共享意向性——从个体到关系的临床轨迹。</p>
+        <span class="text-mbt-green text-sm font-medium">心智位置 →</span>
+      </div>
+      <div class="level-card bg-white rounded-2xl p-6 border border-gray-100">
+        <div class="w-10 h-10 bg-mbt-purple rounded-xl flex items-center justify-center text-white font-bold mb-4">L4</div>
+        <h3 class="font-bold text-lg mb-2">治疗师姿态</h3>
+        <p class="text-gray-600 text-sm mb-3">核心态度、17项干预原则、8大能力领域。</p>
+        <span class="text-mbt-purple text-sm font-medium">核心技术 →</span>
+      </div>
+      <div class="level-card bg-white rounded-2xl p-6 border border-gray-100">
+        <div class="w-10 h-10 bg-mbt-red rounded-xl flex items-center justify-center text-white font-bold mb-4">L5</div>
+        <h3 class="font-bold text-lg mb-2">MBT-ACS 自检</h3>
+        <p class="text-gray-600 text-sm mb-3">依从性与能力量表的简化版本，用于自我评估与反思。</p>
+        <span class="text-mbt-red text-sm font-medium">自我评估 →</span>
+      </div>
+      <div class="level-card bg-white rounded-2xl p-6 border border-gray-100">
+        <div class="w-10 h-10 bg-mbt-teal rounded-xl flex items-center justify-center text-white font-bold mb-4">L6</div>
+        <h3 class="font-bold text-lg mb-2">案例整合实践</h3>
+        <p class="text-gray-600 text-sm mb-3">将全部知识整合到临床案例中，学习如何在实际对话中运用MBT。</p>
+        <span class="text-mbt-teal text-sm font-medium">临床整合 →</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 学习理念 -->
+  <div class="bg-white border-t border-gray-100">
+    <div class="max-w-5xl mx-auto px-4 py-16">
+      <div class="grid md:grid-cols-3 gap-8 text-center">
+        <div>
+          <div class="text-3xl mb-2">📖</div>
+          <h3 class="font-bold mb-2">基于证据</h3>
+          <p class="text-gray-500 text-sm">内容基于MBT核心文献、质量手册、UCL培训材料及最新RCT研究。</p>
+        </div>
+        <div>
+          <div class="text-3xl mb-2">🔄</div>
+          <h3 class="font-bold mb-2">逐级递进</h3>
+          <p class="text-gray-500 text-sm">6个学习关卡从理论到实践，每一步都建立在前一关的基础上。</p>
+        </div>
+        <div>
+          <div class="text-3xl mb-2">🛠️</div>
+          <h3 class="font-bold mb-2">临床导向</h3>
+          <p class="text-gray-500 text-sm">每个概念都配以临床案例和操作化工具，学完即用。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-mbt-dark text-white/60 text-sm py-8">
+    <div class="max-w-5xl mx-auto px-4 text-center">
+      <p>MBT新手村 · 基于Bateman & Fonagy的框架</p>
+      <p class="mt-1">内容来源：MBT资料库 · 用于个人学习与教学</p>
+    </div>
+  </footer>
+</div>
+
+<!-- ========== LEVEL 1: 什么是心智化 ========== -->
+<div id="section-level1" class="section-content pt-16 hidden">
+  <div class="bg-gradient-to-br from-mbt-blue to-blue-700 text-white">
+    <div class="max-w-5xl mx-auto px-4 py-16">
+      <span class="inline-block px-3 py-1 bg-white/20 rounded-full text-sm mb-3">第1关</span>
+      <h1 class="text-3xl sm:text-4xl font-black mb-3">什么是心智化</h1>
+      <p class="text-white/80 text-lg max-w-3xl">心智化是我们感知和理解自己与他人心理状态的能力。它是MBT的基础，也是心理健康的核心。</p>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <!-- Fonagy的定义 -->
+    <div class="bg-white rounded-2xl p-8 border border-gray-100 mb-8">
+      <h2 class="text-xl font-bold mb-4">心智化的定义</h2>
+      <div class="bg-blue-50 border-l-4 border-mbt-blue rounded-r-xl p-5 mb-6">
+        <p class="text-gray-700 leading-relaxed">心智化是指<b>有意识地理解自己和他人的心理状态</b>（包括情感、信念、意图、欲望）的能力。Fonagy将其形象地描述为"<b>将心带在心中</b>"（holding mind in mind）。</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-gray-50 rounded-xl p-5">
+          <h3 class="font-bold text-mbt-blue mb-2">心智化时，我们：</h3>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>• 好奇自己和他人的感受</li>
+            <li>• 能区分表象与实质</li>
+            <li>• 在不确定时保持探索</li>
+            <li>• 从多个视角看待情境</li>
+          </ul>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-5">
+          <h3 class="font-bold text-mbt-orange mb-2">心智化失败时：</h3>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>• 内心体验变得过于真实或过于虚幻</li>
+            <li>• 只能看到唯一的"真相"</li>
+            <li>• 行为替代了心理理解</li>
+            <li>• 出现非心智化模式</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fonagy的故事 -->
+    <div class="bg-white rounded-2xl p-8 border border-gray-100 mb-8">
+      <h2 class="text-xl font-bold mb-4">Fonagy的核心洞见</h2>
+      <p class="text-gray-600 mb-4">Peter Fonagy提出：<b>心智化的反面是暴力</b>。当一个人无法将他人理解为有心理状态的个体时，他人就变成了物体或威胁，暴力就变得可能。</p>
+      <p class="text-gray-600 mb-4">这一洞见来自他对依恋理论、哲学（Wittgenstein、Brentano）和临床经验的整合。心智化的能力不是在真空中发展的——它首先在安全的依恋关系中形成，一个被充分心智化的婴儿才能学会心智化自己和他人。</p>
+      <div class="bg-yellow-50 border-l-4 border-yellow-400 rounded-r-xl p-5">
+        <p class="text-sm text-gray-700"><b>关键名言：</b>"Mentalizing is not a skill you can learn from a book — it is a capacity that develops in the context of attachment relationships." — Peter Fonagy</p>
+      </div>
+    </div>
+
+    <!-- 四个维度 -->
+    <div class="bg-white rounded-2xl p-8 border border-gray-100 mb-8">
+      <h2 class="text-xl font-bold mb-6">心智化的四个维度</h2>
+      <p class="text-gray-600 mb-6">心智化不是一个单一的能力，而是四个维度上的动态平衡。每个维度都是一条连续谱，健康的心理功能在其中灵活移动。</p>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- 自动 ↔ 控制 -->
+        <div class="dimension-card bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6" onclick="toggleDimension('dim1')">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-sm font-bold text-mbt-blue">维度一</span>
+            <span class="text-xs bg-white/70 px-2 py-1 rounded-full">点击展开</span>
+          </div>
+          <h3 class="font-bold text-lg mb-1">自动 ↔ 控制</h3>
+          <p class="text-gray-600 text-sm">Auto vs Controlled</p>
+          <div id="dim1" class="hidden mt-4 pt-4 border-t border-blue-200">
+            <p class="text-gray-700 text-sm leading-relaxed mb-3"><b>自动端：</b>不用费力、直觉式的理解。比如你"就是知道"来访者现在很生气，不需要刻意分析。</p>
+            <p class="text-gray-700 text-sm leading-relaxed mb-3"><b>控制端：</b>有意识地、努力地去理解。比如你在督导中仔细分析来访者为什么会突然沉默。</p>
+            <p class="text-gray-700 text-sm leading-relaxed"><b>临床意义：</b>在强烈的情感激活（高唤起）下，自动心智化会退化为非心智化模式。治疗师需要在控制性心智化和自动心智化之间灵活切换。</p>
+          </div>
+        </div>
+
+        <!-- 自我 ↔ 他人 -->
+        <div class="dimension-card bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6" onclick="toggleDimension('dim2')">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-sm font-bold text-mbt-green">维度二</span>
+            <span class="text-xs bg-white/70 px-2 py-1 rounded-full">点击展开</span>
+          </div>
+          <h3 class="font-bold text-lg mb-1">自我 ↔ 他人</h3>
+          <p class="text-gray-600 text-sm">Self vs Other</p>
+          <div id="dim2" class="hidden mt-4 pt-4 border-t border-green-200">
+            <p class="text-gray-700 text-sm leading-relaxed mb-3"><b>自我端：</b>理解自己的心理状态。比如"我现在感到焦虑，因为我害怕被拒绝。"</p>
+            <p class="text-gray-700 text-sm leading-relaxed mb-3"><b>他人端：</b>理解他人的心理状态。比如"来访者虽然笑着说，但她的紧张感其实很明显。"</p>
+            <p class="text-gray-700 text-sm leading-relaxed"><b>临床意义：</b>BPD患者常在自我心智化（过度关注自己的痛苦）和他人心智化（过度关注治疗师的反应）之间剧烈摇摆，无法整合。</p>
+          </div>
+        </div>
+
+        <!-- 内在 ↔ 外在 -->
+        <div class="dimension-card bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6" onclick="toggleDimension('dim3')">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-sm font-bold text-mbt-orange">维度三</span>
+            <span class="text-xs bg-white/70 px-2 py-1 rounded-full">点击展开</span>
+          </div>
+          <h3 class="font-bold text-lg mb-1">内在 ↔ 外在</h3>
+          <p class="text-gray-600 text-sm">Internal vs External</p>
+          <div id="dim3" class="hidden mt-4 pt-4 border-t border-orange-200">
+            <p class="text-gray-700 text-sm leading-relaxed mb-3"><b>内在端：</b>关注内心的心理状态（情感、幻想、信念）。比如"她愤怒是因为她感到被抛弃。"</p>
+            <p class="text-gray-700 text-sm leading-relaxed mb-3"><b>外在端：</b>关注可见的行为和情境。比如"她大声说话、摔门而出。"</p>
+            <p class="text-gray-700 text-sm leading-relaxed"><b>临床意义：</b>治疗师需要在内外之间寻找平衡。只关注内在会忽略现实约束，只关注外在会丧失心理深度。MBT强调从外在行为出发，探索内在体验。</p>
+          </div>
+        </div>
+
+        <!-- 认知 ↔ 情感 -->
+        <div class="dimension-card bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6" onclick="toggleDimension('dim4')">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-sm font-bold text-mbt-purple">维度四</span>
+            <span class="text-xs bg-white/70 px-2 py-1 rounded-full">点击展开</span>
+          </div>
+          <h3 class="font-bold text-lg mb-1">认知 ↔ 情感</h3>
+          <p class="text-gray-600 text-sm">Cognitive vs Affective</p>
+          <div id="dim4" class="hidden mt-4 pt-4 border-t border-purple-200">
+            <p class="text-gray-700 text-sm leading-relaxed mb-3"><b>认知端：</b>对心理状态的理性理解。比如"我知道她的攻击是防御性的。"</p>
+            <p class="text-gray-700 text-sm leading-relaxed mb-3"><b>情感端：</b>对心理状态的情感体验。比如"我能感受到她攻击背后的恐惧。"</p>
+            <p class="text-gray-700 text-sm leading-relaxed"><b>临床意义：</b>纯粹的认知心智化（"假性心智化"）是假装模式的一种形式。真正的心智化必须包含情感体验。但过度情感激活又会导致心智化崩溃——治疗师要帮助来访者"在感受中思考"。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 四维度互动总结 -->
+    <div class="bg-gradient-to-br from-mbt-dark to-slate-700 text-white rounded-2xl p-8 mb-8">
+      <h2 class="text-xl font-bold mb-4">四个维度的临床意义</h2>
+      <p class="text-white/80 mb-4">心智化不是一个"有或无"的能力，而是在四个维度上的动态过程。有效的心智化意味着能够在每个维度的两端灵活移动，而不是僵化地固定在某一端。</p>
+      <div class="grid sm:grid-cols-2 gap-3 text-sm">
+        <div class="bg-white/10 rounded-xl p-4">
+          <span class="font-bold text-mbt-orange">高唤起时：</span>
+          <span class="text-white/70">自动 ↑ 控制 ↓，情感 ↑ 认知 ↓ → 非心智化模式出现</span>
+        </div>
+        <div class="bg-white/10 rounded-xl p-4">
+          <span class="font-bold text-mbt-blue">低唤起时：</span>
+          <span class="text-white/70">自动 ↓ 控制 ↑，认知 ↑ 情感 ↓ → 假性心智化（假装模式）</span>
+        </div>
+        <div class="bg-white/10 rounded-xl p-4">
+          <span class="font-bold text-mbt-green">健康状态：</span>
+          <span class="text-white/70">在四维度上灵活移动，根据情境调整心智化方式</span>
+        </div>
+        <div class="bg-white/10 rounded-xl p-4">
+          <span class="font-bold text-mbt-purple">治疗目标：</span>
+          <span class="text-white/70">扩展来访者在每个维度上的灵活性，恢复心智化能力</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 关卡总结和导航 -->
+    <div class="flex items-center justify-between">
+      <a href="#" onclick="showSection('home')" class="text-gray-500 hover:text-gray-700">← 返回首页</a>
+      <a href="#" onclick="showSection('level2')" class="px-6 py-3 bg-mbt-blue text-white rounded-xl font-bold hover:bg-blue-600 transition">进入第2关：非心智化模式 →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ========== LEVEL 2: 三个非心智化模式 ========== -->
+<div id="section-level2" class="section-content pt-16 hidden">
+  <div class="bg-gradient-to-br from-mbt-orange to-orange-600 text-white">
+    <div class="max-w-5xl mx-auto px-4 py-16">
+      <span class="inline-block px-3 py-1 bg-white/20 rounded-full text-sm mb-3">第2关</span>
+      <h1 class="text-3xl sm:text-4xl font-black mb-3">三个非心智化模式</h1>
+      <p class="text-white/80 text-lg max-w-3xl">当心智化失败时，个体会退行到三个前心智化（pre-mentalistic）模式中。识别这些模式是MBT干预的核心。</p>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <!-- 概述 -->
+    <div class="bg-white rounded-2xl p-8 border border-gray-100 mb-8">
+      <h2 class="text-xl font-bold mb-4">三个非心智化模式总览</h2>
+      <p class="text-gray-600 mb-6">这三个模式源自发展心理学。Fonagy指出，儿童在获得完整的心智化能力之前，会依次经历这些前心智化阶段。在压力下，成人也会退行到这些模式中。</p>
+      <div class="grid md:grid-cols-3 gap-4">
+        <div class="mode-card bg-red-50 rounded-xl p-5 border-l-4 border-mbt-red">
+          <h3 class="font-bold text-mbt-red mb-2">① 精神等同</h3>
+          <p class="text-gray-600 text-sm">Psychic Equivalence</p>
+          <p class="text-gray-600 text-sm mt-2">"我感觉是这样，所以事实就是这样"</p>
+        </div>
+        <div class="mode-card bg-purple-50 rounded-xl p-5 border-l-4 border-mbt-purple">
+          <h3 class="font-bold text-mbt-purple mb-2">② 假装模式</h3>
+          <p class="text-gray-600 text-sm">Pretend Mode</p>
+          <p class="text-gray-600 text-sm mt-2">"这些想法与现实没有任何关系"</p>
+        </div>
+        <div class="mode-card bg-blue-50 rounded-xl p-5 border-l-4 border-mbt-blue">
+          <h3 class="font-bold text-mbt-blue mb-2">③ 目的论模式</h3>
+          <p class="text-gray-600 text-sm">Teleological Mode</p>
+          <p class="text-gray-600 text-sm mt-2">"只有看得见的结果才算数"</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 精神等同 -->
+    <div class="bg-white rounded-2xl p-8 border border-gray-100 mb-8">
+      <h2 class="text-xl font-bold text-mbt-red mb-4">① 精神等同模式</h2>
+      <div class="bg-red-50 rounded-xl p-5 mb-6">
+        <p class="text-gray-700 leading-relaxed">精神等同是三个模式中<b>最接近精神病性体验</b>的模式。在此模式中，<b>内在世界和外在世界之间的界线消失</b>——你的主观体验就是不容置疑的客观现实。</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <h3 class="font-bold mb-3">临床表现</h3>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>• "没有人喜欢我"——来访者对此深信不疑，即使有证据相反</li>
+            <li>• "你肯定觉得我很烦"——将猜测当作事实</li>
+            <li>• 强烈的确定感，无法考虑其他可能性</li>
+            <li>• 情感激活很高，认知灵活性降为零</li>
+          </ul>
+        </div>
+        <div class="bg-red-50 rounded-xl p-5">
+          <h3 class="font-bold text-mbt-red mb-2">MBT干预策略</h3>
+          <p class="text-sm text-gray-600">先共情性验证来访者的体验（"我能理解你为什么会有这种感觉"），然后温和地引入替代视角（"有没有可能..."）。关键在于——不要在来访者处于精神等同模式时直接挑战其信念，这会让她感到被否定或攻击。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 假装模式 -->
+    <div class="bg-white rounded-2xl p-8 border border-gray-100 mb-8">
+      <h2 class="text-xl font-bold text-mbt-purple mb-4">② 假装模式</h2>
+      <div class="bg-purple-50 rounded-xl p-5 mb-6">
+        <p class="text-gray-700 leading-relaxed">假装模式是精神等同的<b"对面"</b>。在这里，心理体验与现实的联系被切断。来访者可以"谈论"自己的感受，但这些谈论与真实的情感体验分离开来——听起来很有洞察，但对生活没有任何改变。</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <h3 class="font-bold mb-3">临床表现</h3>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>• 冗长但空洞的"心理化"讨论，没有情感</li>
+            <li>• "我知道我妈妈对我很冷漠，这是她自己的依恋问题"——但说的时候毫无情感</li>
+            <li>• 治疗中谈得很好，但现实生活毫无变化</li>
+            <li>• 想法"漂浮"在空中，不与任何真实体验相连</li>
+          </ul>
+        </div>
+        <div class="bg-purple-50 rounded-xl p-5">
+          <h3 class="font-bold text-mbt-purple mb-2">MBT干预策略</h3>
+          <p class="text-sm text-gray-600">治疗师需要"打断"假装模式——通过将谈话拉回到此时此地的情感体验，或聚焦于来访者当下的身体感受。关键问题："当你说这些的时候，你现在有什么感受？"</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 目的论模式 -->
+    <div class="bg-white rounded-2xl p-8 border border-gray-100 mb-8">
+      <h2 class="text-xl font-bold text-mbt-blue mb-4">③ 目的论模式</h2>
+      <div class="bg-blue-50 rounded-xl p-5 mb-6">
+        <p class="text-gray-700 leading-relaxed">在目的论模式中，<b>只有可观察的、具体的结果才被视为真实的</b>。心理状态只有通过外在的、物质性的行为或证据才能得到确认。这种模式在发展上是最"成熟"的前心智化模式，因为它至少承认了外部现实。</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <h3 class="font-bold mb-3">临床表现</h3>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>• "你说你在乎我，那你为什么不给我加一次治疗？"</li>
+            <li>• "如果你不延长治疗时间，就说明你不关心我"</li>
+            <li>• 自伤行为——"只有当我割伤自己时，痛苦才是真实的"</li>
+            <li>• 行动化（acting out）替代了心理化</li>
+          </ul>
+        </div>
+        <div class="bg-blue-50 rounded-xl p-5">
+          <h3 class="font-bold text-mbt-blue mb-2">MBT干预策略</h3>
+          <p class="text-sm text-gray-600">目标是将行为重新连接到心理状态。先验证行为背后的意图（"我理解你非常需要确认我对你的关心"），然后探索行为之下的心理体验。注意：在目的论模式下，<b>设置（setting）本身</b>——如时间、费用、边界——是关键的干预工具。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 模式切换互动 -->
+    <div class="bg-white rounded-2xl p-8 border border-gray-100 mb-8">
+      <h2 class="text-xl font-bold mb-4">模式之间的动态切换</h2>
+      <p class="text-gray-600 mb-6">来访者不会固定在一个模式中。典型的心智化失败过程中，来访者可能在三个模式之间剧烈切换：</p>
+      <div class="relative py-8">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="bg-red-100 rounded-xl p-4 text-center flex-1 w-full">
+            <div class="text-2xl mb-1">🔥</div>
+            <div class="font-bold text-mbt-red text-sm">精神等同</div>
+            <div class="text-xs text-gray-500">"我确信你要抛弃我！"</div>
+          </div>
+          <div class="text-2xl text-gray-400">→</div>
+          <div class="bg-purple-100 rounded-xl p-4 text-center flex-1 w-full">
+            <div class="text-2xl mb-1">☁️</div>
+            <div class="font-bold text-mbt-purple text-sm">假装模式</div>
+            <div class="text-xs text-gray-500">"也许这是我的分离议题..."（毫无情感地）</div>
+          </div>
+          <div class="text-2xl text-gray-400">→</div>
+          <div class="bg-blue-100 rounded-xl p-4 text-center flex-1 w-full">
+            <div class="text-2xl mb-1">⚡</div>
+            <div class="font-bold text-mbt-blue text-sm">目的论</div>
+            <div class="text-xs text-gray-500">"如果你真的在乎，就给我加节！"</div>
+          </div>
+        </div>
+      </div>
+      <p class="text-sm text-gray-500 text-center">MBT治疗师的任务是识别这些模式切换，并在每次切换发生时将干预焦点拉回到心智化本身。</p>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <a href="#" onclick="showSection('level1')" class="text-gray-500 hover:text-gray-700">← 返回第1关</a>
+      <a href="#" onclick="showSection('level3')" class="px-6 py-3 bg-mbt-orange text-white rounded-xl font-bold hover:bg-orange-600 transition">进入第3关：三种心智位 →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ========== LEVEL 3: I-mode / Me-mode / We-mode ========== -->
+<div id="section-level3" class="section-content pt-16 hidden">
+  <div class="bg-gradient-to-br from-mbt-green to-emerald-600 text-white">
+    <div class="max-w-5xl mx-auto px-4 py-16">
+      <span class="inline-block px-3 py-1 bg-white/20 rounded-full text-sm mb-3">第3关</span>
+      <h1 class="text-3xl sm:text-4xl font-black mb-3">三种心智位置</h1>
+      <p class="text-white/80 text-lg max-w-3xl">I-mode（主体自我）、Me-mode（客体自我）、We-mode（共享意向性）——从个体经验到关系性理解的发展轨迹。</p>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <div class="bg-white rounded-2xl p-8 border border-gray-100 mb-8">
+      <h2 class="text-xl font-bold mb-4">概览</h2>
+      <p class="text-gray-600 mb-6">这三个"心智位置"描述的是个体如何体验自己在关系中的位置。它们是哲学中自我意识理论的临床转化——从胡塞尔的"我"到米德的"我-客我"再到共享意向性。</p>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-blue-50 rounded-xl p-6">
+          <div class="w-10 h-10 bg-mbt-blue rounded-full flex items-center justify-center text-white font-bold mb-3">I</div>
+          <h3 class="font-bold text-lg mb-2">I-mode</h3>
+          <p class="text-sm text-gray-600">主体性的、第一人称的体验。我感受到我的感受，我看到我看到的东西。这是最基本的自我意识。</p>
+        </div>
+        <div class="bg-green-50 rounded-xl p-6">
+          <div class="w-10 h-10 bg-mbt-green rounded-full flex items-center justify-center text-white font-bold mb-3">Me</div>
+          <h3 class="font-bold text-lg mb-2">Me-mode</h3>
+          <p class="text-sm text-gray-600">作为客体的自我——我如何被他人看待。需要自我-他人区分的能力，从外部视角看自己。</p>
+        </div>
+        <div class="bg-purple-50 rounded-xl p-6">
+          <div class="w-10 h-10 bg-mbt-purple rounded-full flex items-center justify-center text-white font-bold mb-3">We</div>
+          <h3 class="font-bold text-lg mb-2">We-mode</h3>
+          <p class="text-sm text-gray-600">共享意向性——"我们"的视角。这是认识信任（epistemic trust）的基础，也是MBT治疗的核心目标。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- I-mode -->
+    <div class="bg-white rounded-2xl p-8 border border-gray-100 mb-8">
+      <h2 class="text-xl font-bold text-mbt-blue mb-4">I-mode（主体自我）</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <p class="text-gray-600 mb-4">I-mode是<b>第一人称的、主体性的</b>体验。在I-mode中，我直接体验自己的感受和想法，而不是从外部观察它们。</p>
+          <div class="bg-blue-50 rounded-xl p-4 mb-4">
+            <h4 class="font-bold text-sm text-mbt-blue mb-2">临床例子</h4>
+            <p class="text-sm text-gray-600">"我感到胸口发紧，很害怕。我不知道为什么会这样，但这就是我的感受。"</p>
+          </div>
+          <ul class="space-y-1 text-sm text-gray-600">
+            <li>• 这是最基本的心智位置</li>
+            <li>• 过于僵化的I-mode = 无法反思自己</li>
+            <li>• 缺乏I-mode = 解离或自我疏离</li>
+          </ul>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-5">
+          <h4 class="font-bold text-sm mb-3">I-mode的临床议题</h4>
+          <p class="text-sm text-gray-600">在BPD患者中，I-mode常常处于两种极端：<b>过度认同</b>（"这就是我，我就是这样的人"）或<b>完全丧失</b>（"我不知道我想要什么"）。治疗师需要帮助来访者在I-mode中建立稳定的"主体感"——感受到我是一个有心理状态的人。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Me-mode -->
+    <div class="bg-white rounded-2xl p-8 border border-gray-100 mb-8">
+      <h2 class="text-xl font-bold text-mbt-green mb-4">Me-mode（客体自我）</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <p class="text-gray-600 mb-4">Me-mode是<b>作为客体的自我</b>——我如何被他人看到、理解和评价。这意味着能够从外部视角看自己，是自我反思能力的重要组成部分。</p>
+          <div class="bg-green-50 rounded-xl p-4 mb-4">
+            <h4 class="font-bold text-sm text-mbt-green mb-2">临床例子</h4>
+            <p class="text-sm text-gray-600">"我知道我这样黏着她会让她感到窒息，就像我小时候黏着我妈妈一样。"</p>
+          </div>
+          <ul class="space-y-1 text-sm text-gray-600">
+            <li>• 需要自我-他人区分</li>
+            <li>• 过于僵化的Me-mode = 过度关注他人评价</li>
+            <li>• 缺乏Me-mode = 缺乏自我反思</li>
+          </ul>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-5">
+          <h4 class="font-bold text-sm mb-3">Me-mode的临床议题</h4>
+          <p class="text-sm text-gray-600">BPD患者常见的困难：他们的Me-mode被<b>侵入性的、负面的他人视角</b>占据——"在别人眼里我就是个麻烦"。治疗师需要温和地质疑这些内化的负面表征，帮助来访者发展出更平衡的客体自我。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- We-mode -->
+    <div class="bg-white rounded-2xl p-8 border border-gray-100 mb-8">
+      <h2 class="text-xl font-bold text-mbt-purple mb-4">We-mode（共享意向性）</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <p class="text-gray-600 mb-4">We-mode是<b>共享的、关系性的</b>体验——"我们一起"的视角。它不是简单地把I和Me加起来，而是质的不同：在We-mode中，双方共同创造了一个共享的心理空间。</p>
+          <div class="bg-purple-50 rounded-xl p-4 mb-4">
+            <h4 class="font-bold text-sm text-mbt-purple mb-2">临床例子</h4>
+            <p class="text-sm text-gray-600">"我注意到我们俩刚才都在回避一件很难谈论的事情。也许我们可以一起看一看这到底是什么？"</p>
+          </div>
+          <ul class="space-y-1 text-sm text-gray-600">
+            <li>• 认识信任（epistemic trust）由此产生</li>
+            <li>• MBT治疗的最终目标之一</li>
+            <li>• 在安全的依恋关系中发展出来</li>
+          </ul>
+        </div>
+        <div class="bg-purple-50 rounded-xl p-5">
+          <h4 class="font-bold text-sm text-mbt-purple mb-3">We-mode与认识信任</h4>
+          <p class="text-sm text-gray-600">Fonagy提出：We-mode是认识信任的钥匙。当来访者体验到治疗师"和我们一起思考"（而不是"关于我思考"），ta才开始信任从治疗关系中学习到的内容。这种信任随后泛化到其他社会关系中，使社会学习成为可能。这是MBT促进长期改变的核心机制。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 临床轨迹 -->
+    <div class="bg-gradient-to-br from-mbt-dark to-slate-700 text-white rounded-2xl p-8 mb-8">
+      <h2 class="text-xl font-bold mb-4">三种心智位置的临床轨迹</h2>
+      <p class="text-white/80 mb-6">在治疗过程中，来访者逐渐从单一的心智位置扩展为能够在三个位置之间灵活移动：</p>
+      <div class="space-y-4">
+        <div class="flex items-start gap-4">
+          <span class="text-mbt-blue font-bold text-lg shrink-0 w-8">1.</span>
+          <div>
+            <h4 class="font-bold text-white">建立I-mode</h4>
+            <p class="text-white/70 text-sm">帮助来访者识别和确认自己的感受——"我确实感到愤怒，而不是一团混乱"</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="text-mbt-green font-bold text-lg shrink-0 w-8">2.</span>
+          <div>
+            <h4 class="font-bold text-white">发展Me-mode</h4>
+            <p class="text-white/70 text-sm">引入他人视角——"当你在表达愤怒时，别人会有什么感受？"</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="text-mbt-purple font-bold text-lg shrink-0 w-8">3.</span>
+          <div>
+            <h4 class="font-bold text-white">进入We-mode</h4>
+            <p class="text-white/70 text-sm">创造共享理解——"我们现在能一起看到这个模式了吗？它在我们的关系中如何重演？"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <a href="#" onclick="showSection('level2')" class="text-gray-500 hover:text-gray-700">← 返回第2关</a>
+      <a href="#" onclick="showSection('level4')" class="px-6 py-3 bg-mbt-green text-white rounded-xl font-bold hover:bg-emerald-600 transition">进入第4关：治疗师姿态 →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ========== LEVEL 4: 治疗师姿态 ========== -->
+<div id="section-level4" class="section-content pt-16 hidden">
+  <div class="bg-gradient-to-br from-mbt-purple to-indigo-600 text-white">
+    <div class="max-w-5xl mx-auto px-4 py-16">
+      <span class="inline-block px-3 py-1 bg-white/20 rounded-full text-sm mb-3">第4关</span>
+      <h1 class="text-3xl sm:text-4xl font-black mb-3">MBT治疗师姿态</h1>
+      <p class="text-white/80 text-lg max-w-3xl">三层结构化框架：核心态度 → 干预原则 → 能力领域。这是MBT治疗师的技术核心。</p>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <!-- 三层结构总览 -->
+    <div class="bg-white rounded-2xl p-8 border border-gray-100 mb-8">
+      <h2 class="text-xl font-bold mb-6">三层框架总览</h2>
+      <div class="grid md:grid-cols-3 gap-4 mb-6">
+        <div class="bg-blue-50 rounded-xl p-5 border-t-4 border-mbt-blue">
+          <h3 class="font-bold text-mbt-blue mb-2">第一层：核心态度</h3>
+          <p class="text-sm text-gray-600">不知的姿态（Not-Knowing）<br>真诚（Genuineness）<br>好奇（Inquisitiveness）</p>
+        </div>
+        <div class="bg-purple-50 rounded-xl p-5 border-t-4 border-mbt-purple">
+          <h3 class="font-bold text-mbt-purple mb-2">第二层：17项干预原则</h3>
+          <p class="text-sm text-gray-600">Karterud & Bateman (2012)<br>MBT-ACS评估标准<br>从支持到挑战的干预谱</p>
+        </div>
+        <div class="bg-green-50 rounded-xl p-5 border-t-4 border-mbt-green">
+          <h3 class="font-bold text-mbt-green mb-2">第三层：8大能力领域</h3>
+          <p class="text-sm text-gray-600">MBT Quality Manual<br>治疗师/督导/项目标准<br>涵盖知识、态度、技能</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 第一层：核心态度 -->
+    <div class="bg-white rounded-2xl p-8 border border-gray-100 mb-8">
+      <h2 class="text-xl font-bold text-mbt-blue mb-6">第一层：核心态度</h2>
+      <div class="space-y-6">
+        <div class="bg-blue-50 rounded-xl p-6">
+          <h3 class="font-bold text-lg text-mbt-blue mb-2">不知的姿态（Not-Knowing）</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">MBT治疗师采用"不知"的根本立场：不假设自己已经理解来访者的心理状态。这意味着始终抱有好奇心、避免过早下结论，并不断验证自己的理解是否正确。Fonagy说："在MBT中，问题比答案更有价值。"</p>
+        </div>
+        <div class="bg-indigo-50 rounded-xl p-6">
+          <h3 class="font-bold text-lg text-indigo-600 mb-2">真诚 / 真实（Genuineness / Authenticity）</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">治疗师不是"空白屏幕"，而是一个真实的、有心智的人。这意味着在治疗中承认自己的不确定性、不隐藏自己的情感反应，但以服务于治疗过程的方式使用它们。真诚是建立认识信任的前提。</p>
+        </div>
+        <div class="bg-cyan-50 rounded-xl p-6">
+          <h3 class="font-bold text-lg text-cyan-600 mb-2">好奇 / 探究（Inquisitiveness）</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">持续地对来访者的心理状态保持好奇。不是审问式的，而是协作式的探索——"我们一起发现你的内心世界"。好奇感本身具有治疗作用：它告诉来访者，ta的内心世界值得被理解。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 第二层：17项干预原则 -->
+    <div class="bg-white rounded-2xl p-8 border border-gray-100 mb-8">
+      <h2 class="text-xl font-bold text-mbt-purple mb-2">第二层：17项干预原则</h2>
+      <p class="text-gray-500 text-sm mb-6">Karterud & Bateman (2012) 提出的MBT-ACS评估标准，按干预类型分为6组：</p>
+
+      <!-- 分组标签 -->
+      <div class="flex flex-wrap gap-2 mb-6">
+        <button class="tab-btn px-3 py-1 text-sm rounded-full bg-gray-100 active-tab" data-tab="principle-all" onclick="filterPrinciples('all')">全部</button>
+        <button class="tab-btn px-3 py-1 text-sm rounded-full bg-gray-100" data-tab="principle-support" onclick="filterPrinciples('support')">支持与共情</button>
+        <button class="tab-btn px-3 py-1 text-sm rounded-full bg-gray-100" data-tab="principle-clarify" onclick="filterPrinciples('clarify')">澄清与探索</button>
+        <button class="tab-btn px-3 py-1 text-sm rounded-full bg-gray-100" data-tab="principle-challenge" onclick="filterPrinciples('challenge')">挑战</button>
+        <button class="tab-btn px-3 py-1 text-sm rounded-full bg-gray-100" data-tab="principle-affect" onclick="filterPrinciples('affect')">情感聚焦</button>
+        <button class="tab-btn px-3 py-1 text-sm rounded-full bg-gray-100" data-tab="principle-relation" onclick="filterPrinciples('relation')">关系焦点</button>
+      </div>
+
+      <div id="principles-list" class="space-y-0 divide-y divide-gray-100">
+        <!-- S组 支持与共情 -->
+        <div class="principle-item px-4 py-3 rounded-lg flex items-start gap-3" data-category="support">
+          <span class="text-xs font-bold text-gray-400 bg-gray-100 px-2 py-0.5 rounded shrink-0 mt-0.5">S1</span>
+          <div>
+            <span class="font-medium text-sm">共情性验证</span>
+            <span class="text-gray-400 text-xs ml-2">Empathic Validation</span>
+            <p class="text-gray-500 text-xs mt-0.5">承认并验证来访者的情感体验，使其感到被理解。</p>
+          </div>
+        </div>
+        <div class="principle-item px-4 py-3 rounded-lg flex items-start gap-3" data-category="support">
+          <span class="text-xs font-bold text-gray-400 bg-gray-100 px-2 py-0.5 rounded shrink-0 mt-0.5">S2</span>
+          <div>
+            <span class="font-medium text-sm">支持与共情</span>
+            <span class="text-gray-400 text-xs ml-2">Support and Empathy</span>
+            <p class="text-gray-500 text-xs mt-0.5">提供温暖、接纳的治疗关系，作为安全基地。</p>
+          </div>
+        </div>
+
+        <!-- C组 澄清与探索 -->
+        <div class="principle-item px-4 py-3 rounded-lg flex items-start gap-3" data-category="clarify">
+          <span class="text-xs font-bold text-gray-400 bg-gray-100 px-2 py-0.5 rounded shrink-0 mt-0.5">C1</span>
+          <div>
+            <span class="font-medium text-sm">澄清情感</span>
+            <span class="text-gray-400 text-xs ml-2">Clarification of Affect</span>
+            <p class="text-gray-500 text-xs mt-0.5">帮助来访者识别和命名模糊的情感体验。</p>
+          </div>
+        </div>
+        <div class="principle-item px-4 py-3 rounded-lg flex items-start gap-3" data-category="clarify">
+          <span class="text-xs font-bold text-gray-400 bg-gray-100 px-2 py-0.5 rounded shrink-0 mt-0.5">C2</span>
+          <div>
+            <span class="font-medium text-sm">探索情感</span>
+            <span class="text-gray-400 text-xs ml-2">Exploration of Affect</span>
+            <p class="text-gray-500 text-xs mt-0.5">深入探索情感体验的来源、背景和意义。</p>
+          </div>
+        </div>
+        <div class="principle-item px-4 py-3 rounded-lg flex items-start gap-3" data-category="clarify">
+          <span class="text-xs font-bold text-gray-400 bg-gray-100 px-2 py-0.5 rounded shrink-0 mt-0.5">C3</span>
+          <div>
+            <span class="font-medium text-sm">探索心理状态</span>
+            <span class="text-gray-400 text-xs ml-2">Exploration of Mental States</span>
+            <p class="text-gray-500 text-xs mt-0.5">探索来访者或他人的信念、意图、欲望等心理状态。</p>
+          </div>
+        </div>
+        <div class="principle-item px-4 py-3 rounded-lg flex items-start gap-3" data-category="clarify">
+          <span class="text-xs font-bold text-gray-400 bg-gray-100 px-2 py-0.5 rounded shrink-0 mt-0.5">C4</span>
+          <div>
+            <span class="font-medium text-sm">探索心理状态之间的关系</span>
+            <span class="text-gray-400 text-xs ml-2">Exploring relationships between mental states</span>
+            <p class="text-gray-500 text-xs mt-0.5">链接不同心理状态——"当你感到被忽视时，你变得愤怒，然后你感到内疚？"</p>
+          </div>
+        </div>
+        <div class="principle-item px-4 py-3 rounded-lg flex items-start gap-3" data-category="clarify">
+          <span class="text-xs font-bold text-gray-400 bg-gray-100 px-2 py-0.5 rounded shrink-0 mt-0.5">C5</span>
+          <div>
+            <span class="font-medium text-sm">探索情境与心理状态的关联</span>
+            <span class="text-gray-400 text-xs ml-2">Exploring context-mental state connections</span>
+            <p class="text-gray-500 text-xs mt-0.5">将心理状态放在生活情境中理解。</p>
+          </div>
+        </div>
+        <div class="principle-item px-4 py-3 rounded-lg flex items-start gap-3" data-category="clarify">
+          <span class="text-xs font-bold text-gray-400 bg-gray-100 px-2 py-0.5 rounded shrink-0 mt-0.5">C6</span>
+          <div>
+            <span class="font-medium text-sm">探索他人心理状态（非治疗师）</span>
+            <span class="text-gray-400 text-xs ml-2">Mental states of others (non-therapist)</span>
+            <p class="text-gray-500 text-xs mt-0.5">帮助来访者理解生活中其他人的心理状态。</p>
+          </div>
+        </div>
+
+        <!-- CH组 挑战 -->
+        <div class="principle-item px-4 py-3 rounded-lg flex items-start gap-3" data-category="challenge">
+          <span class="text-xs font-bold text-gray-400 bg-gray-100 px-2 py-0.5 rounded shrink-0 mt-0.5">CH1</span>
+          <div>
+            <span class="font-medium text-sm">挑战不一致</span>
+            <span class="text-gray-400 text-xs ml-2">Challenge of inconsistency</span>
+            <p class="text-gray-500 text-xs mt-0.5">温和地指出来访者言语与非言语信息之间的不一致。</p>
+          </div>
+        </div>
+        <div class="principle-item px-4 py-3 rounded-lg flex items-start gap-3" data-category="challenge">
+          <span class="text-xs font-bold text-gray-400 bg-gray-100 px-2 py-0.5 rounded shrink-0 mt-0.5">CH2</span>
+          <div>
+            <span class="font-medium text-sm">指出避免心智化的倾向</span>
+            <span class="text-gray-400 text-xs ml-2">Pointing out avoidance of mentalizing</span>
+            <p class="text-gray-500 text-xs mt-0.5">识别并标记来访者逃避心智化的时刻。</p>
+          </div>
+        </div>
+        <div class="principle-item px-4 py-3 rounded-lg flex items-start gap-3" data-category="challenge">
+          <span class="text-xs font-bold text-gray-400 bg-gray-100 px-2 py-0.5 rounded shrink-0 mt-0.5">CH3</span>
+          <div>
+            <span class="font-medium text-sm">挑战非心智化模式</span>
+            <span class="text-gray-400 text-xs ml-2">Challenge of non-mentalizing modes</span>
+            <p class="text-gray-500 text-xs mt-0.5">识别并干预精神等同、假装模式、目的论模式。</p>
+          </div>
+        </div>
+
+        <!-- A组 情感聚焦 -->
+        <div class="principle-item px-4 py-3 rounded-lg flex items-start gap-3" data-category="affect">
+          <span class="text-xs font-bold text-gray-400 bg-gray-100 px-2 py-0.5 rounded shrink-0 mt-0.5">A1</span>
+          <div>
+            <span class="font-medium text-sm">聚焦此时此地的情感</span>
+            <span class="text-gray-400 text-xs ml-2">Focus on here-and-now affect</span>
+            <p class="text-gray-500 text-xs mt-0.5">将注意力带到当下的情感体验上。</p>
+          </div>
+        </div>
+        <div class="principle-item px-4 py-3 rounded-lg flex items-start gap-3" data-category="affect">
+          <span class="text-xs font-bold text-gray-400 bg-gray-100 px-2 py-0.5 rounded shrink-0 mt-0.5">A2</span>
+          <div>
+            <span class="font-medium text-sm">标记情感</span>
+            <span class="text-gray-400 text-xs ml-2">Marking affect</span>
+            <p class="text-gray-500 text-xs mt-0.5">帮助来访者用词语标记自己的情感状态。</p>
+          </div>
+        </div>
+        <div class="principle-item px-4 py-3 rounded-lg flex items-start gap-3" data-category="affect">
+          <span class="text-xs font-bold text-gray-400 bg-gray-100 px-2 py-0.5 rounded shrink-0 mt-0.5">A3</span>
+          <div>
+            <span class="font-medium text-sm">调节情感唤起</span>
+            <span class="text-gray-400 text-xs ml-2">Affect regulation/containment</span>
+            <p class="text-gray-500 text-xs mt-0.5">在情感过度激活时帮助来访者恢复平衡。</p>
+          </div>
+        </div>
+
+        <!-- R组 关系焦点 -->
+        <div class="principle-item px-4 py-3 rounded-lg flex items-start gap-3" data-category="relation">
+          <span class="text-xs font-bold text-gray-400 bg-gray-100 px-2 py-0.5 rounded shrink-0 mt-0.5">R1</span>
+          <div>
+            <span class="font-medium text-sm">探索治疗关系中的心理状态</span>
+            <span class="text-gray-400 text-xs ml-2">Mental states in the therapeutic relationship</span>
+            <p class="text-gray-500 text-xs mt-0.5">关注来访者对治疗师的感受和看法（移情）。</p>
+          </div>
+        </div>
+        <div class="principle-item px-4 py-3 rounded-lg flex items-start gap-3" data-category="relation">
+          <span class="text-xs font-bold text-gray-400 bg-gray-100 px-2 py-0.5 rounded shrink-0 mt-0.5">R2</span>
+          <div>
+            <span class="font-medium text-sm">探索治疗师的体验</span>
+            <span class="text-gray-400 text-xs ml-2">Mental state of the therapist</span>
+            <p class="text-gray-500 text-xs mt-0.5">适当分享治疗师对来访者的感受（反移情），以促进心智化。</p>
+          </div>
+        </div>
+        <div class="principle-item px-4 py-3 rounded-lg flex items-start gap-3" data-category="relation">
+          <span class="text-xs font-bold text-gray-400 bg-gray-100 px-2 py-0.5 rounded shrink-0 mt-0.5">R3</span>
+          <div>
+            <span class="font-medium text-sm">探索治疗关系中的互动</span>
+            <span class="text-gray-400 text-xs ml-2">Relationship in the here-and-now</span>
+            <p class="text-gray-500 text-xs mt-0.5">聚焦治疗师-来访者之间的实时互动。</p>
+          </div>
+        </div>
+      </div>
+      <p class="text-xs text-gray-400 mt-4">来源：Karterud & Bateman (2012). MBT Adherence and Competence Scale (MBT-ACS).</p>
+    </div>
+
+    <!-- 第三层：8大能力领域 -->
+    <div class="bg-white rounded-2xl p-8 border border-gray-100 mb-8">
+      <h2 class="text-xl font-bold text-mbt-green mb-2">第三层：8大能力领域</h2>
+      <p class="text-gray-500 text-sm mb-6">来自MBT质量手册（Bateman, Bales & Hutsebaut, 2023）的能力标准</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-green-50 rounded-xl p-4">
+          <span class="font-bold text-mbt-green text-lg">01</span>
+          <h3 class="font-bold text-sm mb-1">治疗师姿态</h3>
+          <p class="text-gray-500 text-xs">不知、好奇、真诚的态度</p>
+        </div>
+        <div class="bg-green-50 rounded-xl p-4">
+          <span class="font-bold text-mbt-green text-lg">02</span>
+          <h3 class="font-bold text-sm mb-1">支持与共情</h3>
+          <p class="text-gray-500 text-xs">提供安全、接纳的治疗关系</p>
+        </div>
+        <div class="bg-green-50 rounded-xl p-4">
+          <span class="font-bold text-mbt-green text-lg">03</span>
+          <h3 class="font-bold text-sm mb-1">澄清与探索</h3>
+          <p class="text-gray-500 text-xs">探索心理状态及其关联</p>
+        </div>
+        <div class="bg-green-50 rounded-xl p-4">
+          <span class="font-bold text-mbt-green text-lg">04</span>
+          <h3 class="font-bold text-sm mb-1">挑战与面质</h3>
+          <p class="text-gray-500 text-xs">处理不一致和非心智化模式</p>
+        </div>
+        <div class="bg-green-50 rounded-xl p-4">
+          <span class="font-bold text-mbt-green text-lg">05</span>
+          <h3 class="font-bold text-sm mb-1">情感焦点</h3>
+          <p class="text-gray-500 text-xs">识别、标记、调节情感</p>
+        </div>
+        <div class="bg-green-50 rounded-xl p-4">
+          <span class="font-bold text-mbt-green text-lg">06</span>
+          <h3 class="font-bold text-sm mb-1">关系焦点</h3>
+          <p class="text-gray-500 text-xs">关注治疗关系中的状态</p>
+        </div>
+        <div class="bg-green-50 rounded-xl p-4">
+          <span class="font-bold text-mbt-green text-lg">07</span>
+          <h3 class="font-bold text-sm mb-1">结构化管理</h3>
+          <p class="text-gray-500 text-xs">治疗设置、危机管理、团队协作</p>
+        </div>
+        <div class="bg-green-50 rounded-xl p-4">
+          <span class="font-bold text-mbt-green text-lg">08</span>
+          <h3 class="font-bold text-sm mb-1">专业发展</h3>
+          <p class="text-gray-500 text-xs">持续学习、督导、自我反思</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MBT干预流程图 -->
+    <div class="bg-gradient-to-br from-mbt-dark to-slate-700 text-white rounded-2xl p-8 mb-8">
+      <h2 class="text-xl font-bold mb-4">MBT干预流程图</h2>
+      <p class="text-white/80 mb-6">临床决策的简化路径：</p>
+      <div class="text-sm space-y-3">
+        <div class="flex items-center gap-3">
+          <span class="bg-mbt-blue text-white px-3 py-1 rounded-full text-xs shrink-0">第一步</span>
+          <span class="text-white/80">来访者说了/做了什么 → 发生了什么心理状态？</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="bg-mbt-purple text-white px-3 py-1 rounded-full text-xs shrink-0">第二步</span>
+          <span class="text-white/80">识别当前模式：是心智化还是非心智化（精神等同/假装/目的论）？</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="bg-mbt-orange text-white px-3 py-1 rounded-full text-xs shrink-0">第三步</span>
+          <span class="text-white/80">选择干预策略：支持 → 澄清/探索 → 挑战/情感聚焦 → 关系焦点</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="bg-mbt-green text-white px-3 py-1 rounded-full text-xs shrink-0">第四步</span>
+          <span class="text-white/80">观察来访者反应 → 检查心智化是否恢复 → 如未恢复，退回上一步</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <a href="#" onclick="showSection('level3')" class="text-gray-500 hover:text-gray-700">← 返回第3关</a>
+      <a href="#" onclick="showSection('level5')" class="px-6 py-3 bg-mbt-purple text-white rounded-xl font-bold hover:bg-indigo-600 transition">进入第5关：ACS自检 →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ========== LEVEL 5: MBT-ACS 自检 ========== -->
+<div id="section-level5" class="section-content pt-16 hidden">
+  <div class="bg-gradient-to-br from-mbt-red to-rose-600 text-white">
+    <div class="max-w-5xl mx-auto px-4 py-16">
+      <span class="inline-block px-3 py-1 bg-white/20 rounded-full text-sm mb-3">第5关</span>
+      <h1 class="text-3xl sm:text-4xl font-black mb-3">MBT-ACS 自检工具</h1>
+      <p class="text-white/80 text-lg max-w-3xl">依从性与能力量表的简化版——用于治疗师自我评估和反思的工具。</p>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <div class="bg-white rounded-2xl p-8 border border-gray-100 mb-8">
+      <h2 class="text-xl font-bold mb-4">使用说明</h2>
+      <p class="text-gray-600 mb-4">以下是对MBT核心干预原则的简化自评清单。你可以定期使用它来反思自己的临床工作，识别优势领域和需要发展的方向。</p>
+      <p class="text-gray-500 text-sm">评估标准：<b>1</b> = 很少使用 / 需要发展，<b>2</b> = 有时使用 / 继续练习，<b>3</b> = 经常使用 / 已成为习惯</p>
+    </div>
+
+    <div class="bg-white rounded-2xl p-8 border border-gray-100 mb-8">
+      <h2 class="text-xl font-bold mb-6">自评清单</h2>
+      <form id="acs-form" onsubmit="return false;">
+        <!-- 支持与共情 -->
+        <div class="mb-8">
+          <h3 class="font-bold text-mbt-blue mb-4">支持与共情</h3>
+          <div class="space-y-4" id="acs-support">
+            <div class="acs-item flex items-center justify-between p-3 bg-blue-50 rounded-xl" data-key="s1">
+              <span class="text-sm flex-1">我能共情地验证来访者的情感体验</span>
+              <div class="flex gap-2 ml-4">
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="1" onclick="setACSScore(this)">1</button>
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="2" onclick="setACSScore(this)">2</button>
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="3" onclick="setACSScore(this)">3</button>
+              </div>
+            </div>
+            <div class="acs-item flex items-center justify-between p-3 bg-blue-50 rounded-xl" data-key="s2">
+              <span class="text-sm flex-1">我能提供温暖、接纳的治疗关系</span>
+              <div class="flex gap-2 ml-4">
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="1" onclick="setACSScore(this)">1</button>
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="2" onclick="setACSScore(this)">2</button>
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="3" onclick="setACSScore(this)">3</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 澄清与探索 -->
+        <div class="mb-8">
+          <h3 class="font-bold text-mbt-orange mb-4">澄清与探索</h3>
+          <div class="space-y-4" id="acs-clarify">
+            <div class="acs-item flex items-center justify-between p-3 bg-orange-50 rounded-xl" data-key="c1">
+              <span class="text-sm flex-1">我帮助来访者识别和命名模糊的情感</span>
+              <div class="flex gap-2 ml-4">
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="1" onclick="setACSScore(this)">1</button>
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="2" onclick="setACSScore(this)">2</button>
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="3" onclick="setACSScore(this)">3</button>
+              </div>
+            </div>
+            <div class="acs-item flex items-center justify-between p-3 bg-orange-50 rounded-xl" data-key="c2">
+              <span class="text-sm flex-1">我探索情感体验的来源和背景</span>
+              <div class="flex gap-2 ml-4">
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="1" onclick="setACSScore(this)">1</button>
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="2" onclick="setACSScore(this)">2</button>
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="3" onclick="setACSScore(this)">3</button>
+              </div>
+            </div>
+            <div class="acs-item flex items-center justify-between p-3 bg-orange-50 rounded-xl" data-key="c3">
+              <span class="text-sm flex-1">我探索心理状态之间的关联</span>
+              <div class="flex gap-2 ml-4">
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="1" onclick="setACSScore(this)">1</button>
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="2" onclick="setACSScore(this)">2</button>
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="3" onclick="setACSScore(this)">3</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 挑战 -->
+        <div class="mb-8">
+          <h3 class="font-bold text-mbt-red mb-4">挑战与面质</h3>
+          <div class="space-y-4" id="acs-challenge">
+            <div class="acs-item flex items-center justify-between p-3 bg-red-50 rounded-xl" data-key="ch1">
+              <span class="text-sm flex-1">我温和地指出来访者的不一致</span>
+              <div class="flex gap-2 ml-4">
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="1" onclick="setACSScore(this)">1</button>
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="2" onclick="setACSScore(this)">2</button>
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="3" onclick="setACSScore(this)">3</button>
+              </div>
+            </div>
+            <div class="acs-item flex items-center justify-between p-3 bg-red-50 rounded-xl" data-key="ch2">
+              <span class="text-sm flex-1">我识别并挑战非心智化模式</span>
+              <div class="flex gap-2 ml-4">
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="1" onclick="setACSScore(this)">1</button>
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="2" onclick="setACSScore(this)">2</button>
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="3" onclick="setACSScore(this)">3</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 情感聚焦 -->
+        <div class="mb-8">
+          <h3 class="font-bold text-mbt-purple mb-4">情感聚焦</h3>
+          <div class="space-y-4" id="acs-affect">
+            <div class="acs-item flex items-center justify-between p-3 bg-purple-50 rounded-xl" data-key="a1">
+              <span class="text-sm flex-1">我将注意力带到此时此地的情感上</span>
+              <div class="flex gap-2 ml-4">
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="1" onclick="setACSScore(this)">1</button>
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="2" onclick="setACSScore(this)">2</button>
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="3" onclick="setACSScore(this)">3</button>
+              </div>
+            </div>
+            <div class="acs-item flex items-center justify-between p-3 bg-purple-50 rounded-xl" data-key="a2">
+              <span class="text-sm flex-1">我帮助来访者标记情感状态</span>
+              <div class="flex gap-2 ml-4">
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="1" onclick="setACSScore(this)">1</button>
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="2" onclick="setACSScore(this)">2</button>
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="3" onclick="setACSScore(this)">3</button>
+              </div>
+            </div>
+            <div class="acs-item flex items-center justify-between p-3 bg-purple-50 rounded-xl" data-key="a3">
+              <span class="text-sm flex-1">我帮助调节过度激活的情感</span>
+              <div class="flex gap-2 ml-4">
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="1" onclick="setACSScore(this)">1</button>
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="2" onclick="setACSScore(this)">2</button>
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="3" onclick="setACSScore(this)">3</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 关系焦点 -->
+        <div class="mb-8">
+          <h3 class="font-bold text-mbt-teal mb-4">关系焦点</h3>
+          <div class="space-y-4" id="acs-relation">
+            <div class="acs-item flex items-center justify-between p-3 bg-teal-50 rounded-xl" data-key="r1">
+              <span class="text-sm flex-1">我探索来访者对我的感受和看法</span>
+              <div class="flex gap-2 ml-4">
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="1" onclick="setACSScore(this)">1</button>
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="2" onclick="setACSScore(this)">2</button>
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="3" onclick="setACSScore(this)">3</button>
+              </div>
+            </div>
+            <div class="acs-item flex items-center justify-between p-3 bg-teal-50 rounded-xl" data-key="r2">
+              <span class="text-sm flex-1">我适当地分享反移情体验以促进心智化</span>
+              <div class="flex gap-2 ml-4">
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="1" onclick="setACSScore(this)">1</button>
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="2" onclick="setACSScore(this)">2</button>
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="3" onclick="setACSScore(this)">3</button>
+              </div>
+            </div>
+            <div class="acs-item flex items-center justify-between p-3 bg-teal-50 rounded-xl" data-key="r3">
+              <span class="text-sm flex-1">我聚焦于治疗师-来访者之间的实时互动</span>
+              <div class="flex gap-2 ml-4">
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="1" onclick="setACSScore(this)">1</button>
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="2" onclick="setACSScore(this)">2</button>
+                <button type="button" class="acs-btn w-8 h-8 rounded-full text-xs font-bold border transition text-gray-400 border-gray-300" data-score="3" onclick="setACSScore(this)">3</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 结果 -->
+        <div class="bg-gradient-to-br from-mbt-dark to-slate-700 text-white rounded-2xl p-6 text-center">
+          <h3 class="font-bold mb-2">你的自评结果</h3>
+          <div id="acs-result" class="text-4xl font-black text-mbt-blue">
+            -- / 42
+          </div>
+          <p class="text-white/60 text-sm mt-2">完成所有评分后自动更新</p>
+        </div>
+      </form>
+    </div>
+
+    <!-- 解释 -->
+    <div class="bg-white rounded-2xl p-8 border border-gray-100 mb-8">
+      <h2 class="text-xl font-bold mb-4">结果解读</h2>
+      <div class="grid sm:grid-cols-3 gap-4 text-sm">
+        <div class="bg-green-50 rounded-xl p-4">
+          <span class="font-bold text-mbt-green">36-42分</span>
+          <p class="text-gray-600 mt-1">高度依从——你能在各种情境中灵活运用MBT原则，建议挑战更复杂的案例。</p>
+        </div>
+        <div class="bg-yellow-50 rounded-xl p-4">
+          <span class="font-bold text-yellow-600">28-35分</span>
+          <p class="text-gray-600 mt-1">良好发展——你在大部分核心原则上表现扎实，可以聚焦于分数较低的领域进行刻意练习。</p>
+        </div>
+        <div class="bg-red-50 rounded-xl p-4">
+          <span class="font-bold text-mbt-red">&lt;28分</span>
+          <p class="text-gray-600 mt-1">发展中阶段——建议在督导中重点关注MBT基本姿态，从共情性验证和情感探索开始练习。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <a href="#" onclick="showSection('level4')" class="text-gray-500 hover:text-gray-700">← 返回第4关</a>
+      <a href="#" onclick="showSection('level6')" class="px-6 py-3 bg-mbt-red text-white rounded-xl font-bold hover:bg-rose-600 transition">进入第6关：案例整合 →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ========== LEVEL 6: 案例整合 ========== -->
+<div id="section-level6" class="section-content pt-16 hidden">
+  <div class="bg-gradient-to-br from-mbt-teal to-teal-600 text-white">
+    <div class="max-w-5xl mx-auto px-4 py-16">
+      <span class="inline-block px-3 py-1 bg-white/20 rounded-full text-sm mb-3">第6关</span>
+      <h1 class="text-3xl sm:text-4xl font-black mb-3">案例整合实践</h1>
+      <p class="text-white/80 text-lg max-w-3xl">将前5关所学的全部知识整合到临床案例中。通过逐段标注的治疗对话，学习如何在真实场景中运用MBT。</p>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <!-- 案例背景 -->
+    <div class="bg-white rounded-2xl p-8 border border-gray-100 mb-8">
+      <h2 class="text-xl font-bold mb-4">案例背景：S女士</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <p class="text-gray-600 text-sm mb-3">S女士，BPD诊断，与治疗师（T）进行到第18次MBT治疗。在之前的几次治疗中，S女士一直担心治疗师会离开她——与她的早期被抛弃经历密切相关。</p>
+          <p class="text-gray-600 text-sm mb-3"><b>本次治疗的情境：</b>治疗师提前一周告知S女士下周将暂停一次治疗（因培训安排）。S女士在本次治疗开始时显得愤怒且沉默。</p>
+        </div>
+        <div class="bg-teal-50 rounded-xl p-5">
+          <h3 class="font-bold text-sm text-mbt-teal mb-2">此案例中可见的MBT概念</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2 py-1 bg-teal-100 text-teal-700 rounded text-xs">精神等同模式</span>
+            <span class="px-2 py-1 bg-teal-100 text-teal-700 rounded text-xs">目的论模式</span>
+            <span class="px-2 py-1 bg-teal-100 text-teal-700 rounded text-xs">共情性验证</span>
+            <span class="px-2 py-1 bg-teal-100 text-teal-700 rounded text-xs">情感聚焦</span>
+            <span class="px-2 py-1 bg-teal-100 text-teal-700 rounded text-xs">不知的姿态</span>
+            <span class="px-2 py-1 bg-teal-100 text-teal-700 rounded text-xs">关系焦点</span>
+            <span class="px-2 py-1 bg-teal-100 text-teal-700 rounded text-xs">We-mode</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 对话逐字稿 + 标注 -->
+    <div class="bg-white rounded-2xl p-8 border border-gray-100 mb-8">
+      <h2 class="text-xl font-bold mb-6">治疗对话逐字稿与MBT标注</h2>
+
+      <div class="space-y-6">
+        <!-- 第1段 -->
+        <div class="dialogue-block bg-gray-50 rounded-xl p-5">
+          <div class="flex items-start gap-4">
+            <span class="text-lg font-bold text-gray-400 shrink-0">T:</span>
+            <div>
+              <p class="text-gray-700">你今天进来的时候看起来很不开心。我刚说"你好"的时候，你甚至都没看我。出什么事了？</p>
+              <div class="mt-2 flex flex-wrap gap-2">
+                <span class="px-2 py-0.5 bg-blue-100 text-blue-700 rounded text-xs">支持与共情</span>
+                <span class="px-2 py-0.5 bg-orange-100 text-orange-700 rounded text-xs">探索心理状态</span>
+                <span class="px-2 py-0.5 bg-purple-100 text-purple-700 rounded text-xs">不知的姿态</span>
+              </div>
+              <p class="text-xs text-gray-400 mt-1">治疗师从观察到的外在行为出发，以开放性的、不知的姿态邀请探索。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 第2段 -->
+        <div class="dialogue-block bg-gray-50 rounded-xl p-5">
+          <div class="flex items-start gap-4">
+            <span class="text-lg font-bold text-gray-400 shrink-0">P:</span>
+            <div>
+              <p class="text-gray-700">（沉默15秒）你要走了。你和其他人一样。我不明白我为什么还要在这里浪费时间。</p>
+              <div class="mt-2 flex flex-wrap gap-2">
+                <span class="px-2 py-0.5 bg-red-100 text-red-700 rounded text-xs">精神等同模式</span>
+                <span class="px-2 py-0.5 bg-red-100 text-red-700 rounded text-xs">目的论模式</span>
+              </div>
+              <p class="text-xs text-gray-400 mt-1">来访者将"暂停一次治疗"等同于"抛弃"（精神等同），并用"浪费时间"表达目的论式的失望。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 第3段 -->
+        <div class="dialogue-block bg-gray-50 rounded-xl p-5">
+          <div class="flex items-start gap-4">
+            <span class="text-lg font-bold text-gray-400 shrink-0">T:</span>
+            <div>
+              <p class="text-gray-700">我听到了。你觉得我要离开了——而且这让你感到非常愤怒和受伤。我理解为什么我上周说暂停一次的时候，你会有这种感受。给我多说一些——你觉得"我要走了"是什么意思？</p>
+              <div class="mt-2 flex flex-wrap gap-2">
+                <span class="px-2 py-0.5 bg-green-100 text-green-700 rounded text-xs">共情性验证</span>
+                <span class="px-2 py-0.5 bg-orange-100 text-orange-700 rounded text-xs">澄清情感</span>
+                <span class="px-2 py-0.5 bg-blue-100 text-blue-700 rounded text-xs">探索</span>
+              </div>
+              <p class="text-xs text-gray-400 mt-1">治疗师先验证情感（不挑战非心智化模式），然后温和地邀请来访者打开"你要走了"这个短语的心理内容——从不进入假装模式开始。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 第4段 -->
+        <div class="dialogue-block bg-gray-50 rounded-xl p-5">
+          <div class="flex items-start gap-4">
+            <span class="text-lg font-bold text-gray-400 shrink-0">P:</span>
+            <div>
+              <p class="text-gray-700">意思就是你不想再来见我了。你找到借口了。你和其他人一样——最终都会离开。我从来就不该相信你。</p>
+              <div class="mt-2 flex flex-wrap gap-2">
+                <span class="px-2 py-0.5 bg-red-100 text-red-700 rounded text-xs">精神等同模式</span>
+              </div>
+              <p class="text-xs text-gray-400 mt-1">来访者的确信感很强——"意思就是你..."。精神等同模式的特征：内在体验=客观事实。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 第5段 -->
+        <div class="dialogue-block bg-gray-50 rounded-xl p-5">
+          <div class="flex items-start gap-4">
+            <span class="text-lg font-bold text-gray-400 shrink-0">T:</span>
+            <div>
+              <p class="text-gray-700">我能感觉到你现在有多确信这件事。而且我理解——对你来说，我的离开（即使只是一次）感觉就像抛弃。这和你之前经历过的感觉一模一样。我想知道——有没有一个很小的可能性，你此刻感受到的"事实"和你以前的经历有关？</p>
+              <div class="mt-2 flex flex-wrap gap-2">
+                <span class="px-2 py-0.5 bg-green-100 text-green-700 rounded text-xs">共情性验证</span>
+                <span class="px-2 py-0.5 bg-yellow-100 text-yellow-700 rounded text-xs">挑战非心智化</span>
+                <span class="px-2 py-0.5 bg-orange-100 text-orange-700 rounded text-xs">探索情境-心理状态关联</span>
+              </div>
+              <p class="text-xs text-gray-400 mt-1">治疗师先验证（不否定体验），然后温和地挑战精神等同——不是直接说"你错了"，而是引入"可能性"的语言。这是MBT核心技巧：在不破坏信任的前提下打开替代视角。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 第6段 -->
+        <div class="dialogue-block bg-gray-50 rounded-xl p-5">
+          <div class="flex items-start gap-4">
+            <span class="text-lg font-bold text-gray-400 shrink-0">P:</span>
+            <div>
+              <p class="text-gray-700">（沉默，语气稍缓）...我不知道。也许。但是我妈妈离开的时候也说是"暂时的"，然后她再也没回来。</p>
+              <div class="mt-2 flex flex-wrap gap-2">
+                <span class="px-2 py-0.5 bg-teal-100 text-teal-700 rounded text-xs">心智化开始恢复</span>
+              </div>
+              <p class="text-xs text-gray-400 mt-1">来访者开始区分"现在的治疗师暂停一次"和"过去的妈妈离开"——心智化正在恢复。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 第7段 -->
+        <div class="dialogue-block bg-gray-50 rounded-xl p-5">
+          <div class="flex items-start gap-4">
+            <span class="text-lg font-bold text-gray-400 shrink-0">T:</span>
+            <div>
+              <p class="text-gray-700">啊——现在我理解了。我下周暂停一次——对你来说——激活了那个旧的感受：你妈妈说过"暂时"然后永远的离开。难怪你这么愤怒和害怕。但我们不是那样。我下周会回来。而且我理解这对你来说有多难相信。我们能否一起想想，当你感到这种确定感的时候，能做些什么来提醒自己——也许事实不止一个版本？</p>
+              <div class="mt-2 flex flex-wrap gap-2">
+                <span class="px-2 py-0.5 bg-green-100 text-green-700 rounded text-xs">验证+确认</span>
+                <span class="px-2 py-0.5 bg-teal-100 text-teal-700 rounded text-xs">关系焦点</span>
+                <span class="px-2 py-0.5 bg-purple-100 text-purple-700 rounded text-xs">We-mode</span>
+              </div>
+              <p class="text-xs text-gray-400 mt-1">治疗师将过去和现在区分开（促进Me-mode），然后邀请"我们一起"（进入We-mode）。这是在来访者心智化恢复后做出的关系焦点的干预。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 案例整合分析 -->
+    <div class="bg-gradient-to-br from-mbt-dark to-slate-700 text-white rounded-2xl p-8 mb-8">
+      <h2 class="text-xl font-bold mb-4">案例整合分析</h2>
+      <div class="grid md:grid-cols-2 gap-6 text-sm">
+        <div class="bg-white/10 rounded-xl p-5">
+          <h3 class="font-bold text-mbt-orange mb-2">非心智化模式识别</h3>
+          <ul class="text-white/70 space-y-1">
+            <li>• 精神等同："你要走了" = "你再也不回来了"</li>
+            <li>• 目的论："浪费时间"——只看到具体结果</li>
+            <li>• 从模式到修复：验证 → 温和挑战 → 心智化恢复</li>
+          </ul>
+        </div>
+        <div class="bg-white/10 rounded-xl p-5">
+          <h3 class="font-bold text-mbt-blue mb-2">心智位置的移动</h3>
+          <ul class="text-white/70 space-y-1">
+            <li>• 开始：僵化的I-mode（"我感觉=事实"）</li>
+            <li>• 中间：Me-mode出现（"我妈妈也是这样的"）</li>
+            <li>• 最后：We-mode（"我们一起想想"）</li>
+          </ul>
+        </div>
+        <div class="bg-white/10 rounded-xl p-5">
+          <h3 class="font-bold text-mbt-green mb-2">治疗师姿态示范</h3>
+          <ul class="text-white/70 space-y-1">
+            <li>• 不知："给我多说一些"——不假设</li>
+            <li>• 真诚："我不是那样。我下周会回来"</li>
+            <li>• 好奇：探索"你要走了"的心理内容</li>
+          </ul>
+        </div>
+        <div class="bg-white/10 rounded-xl p-5">
+          <h3 class="font-bold text-mbt-purple mb-2">四维度平衡</h3>
+          <ul class="text-white/70 space-y-1">
+            <li>• 自动→控制：降低情感唤起，引入反思</li>
+            <li>• 自我→他人：从感受连接到治疗师意图</li>
+            <li>• 内在→外在：外在行为→内在体验→外在现实</li>
+            <li>• 认知→情感：验证情感后加入认知理解</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 练习 -->
+    <div class="bg-white rounded-2xl p-8 border border-gray-100 mb-8">
+      <h2 class="text-xl font-bold mb-4">自修练习</h2>
+      <p class="text-gray-600 mb-4">尝试用MBT框架分析你自己的一个临床片段：</p>
+      <div class="grid md:grid-cols-3 gap-4 text-sm">
+        <div class="bg-blue-50 rounded-xl p-4">
+          <h3 class="font-bold text-mbt-blue mb-2">① 识别模式</h3>
+          <p class="text-gray-600">来访者处于哪个非心智化模式？精神等同、假装模式还是目的论？</p>
+        </div>
+        <div class="bg-green-50 rounded-xl p-4">
+          <h3 class="font-bold text-mbt-green mb-2">② 选择干预</h3>
+          <p class="text-gray-600">你的回应属于17项原则中的哪几项？支持、探索、挑战、情感还是关系？</p>
+        </div>
+        <div class="bg-purple-50 rounded-xl p-4">
+          <h3 class="font-bold text-mbt-purple mb-2">③ 评估效果</h3>
+          <p class="text-gray-600">来访者的心智化是否恢复？是否进入了We-mode？</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <a href="#" onclick="showSection('level5')" class="text-gray-500 hover:text-gray-700">← 返回第5关</a>
+      <a href="#" onclick="showSection('home')" class="px-6 py-3 bg-mbt-teal text-white rounded-xl font-bold hover:bg-teal-600 transition">返回首页</a>
+    </div>
+  </div>
+</div>
+
+<!-- ========== JS ========== -->
+<script>
+// Section navigation
+function showSection(id) {
+  document.querySelectorAll('.section-content').forEach(el => el.classList.add('hidden'));
+  const section = document.getElementById('section-' + id);
+  if (section) section.classList.remove('hidden');
+  // Update nav
+  document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active'));
+  const navLink = document.querySelector(`.nav-link[data-section="${id}"]`);
+  if (navLink) navLink.classList.add('active');
+  // Scroll to top
+  window.scrollTo(0, 0);
+}
+
+// Dimension toggle
+function toggleDimension(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('hidden');
+}
+
+// Principle filter
+function filterPrinciples(category) {
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active-tab'));
+  if (category === 'all') {
+    document.querySelector('.tab-btn[data-tab="principle-all"]').classList.add('active-tab');
+  } else {
+    document.querySelector(`.tab-btn[data-tab="principle-${category}"]`).classList.add('active-tab');
+  }
+  document.querySelectorAll('.principle-item').forEach(el => {
+    if (category === 'all' || el.dataset.category === category) {
+      el.style.display = 'flex';
+    } else {
+      el.style.display = 'none';
+    }
+  });
+}
+
+// ACS scoring
+function setACSScore(btn) {
+  const container = btn.closest('.acs-item');
+  const score = parseInt(btn.dataset.score);
+  container.querySelectorAll('.acs-btn').forEach(b => {
+    const s = parseInt(b.dataset.score);
+    if (s <= score) {
+      b.classList.remove('text-gray-400', 'border-gray-300');
+      b.classList.add('text-white');
+      if (s <= 1) b.classList.add('bg-red-400', 'border-red-400');
+      else if (s <= 2) b.classList.add('bg-yellow-500', 'border-yellow-500');
+      else b.classList.add('bg-green-500', 'border-green-500');
+    } else {
+      b.classList.remove('text-white', 'bg-red-400', 'border-red-400', 'bg-yellow-500', 'border-yellow-500', 'bg-green-500', 'border-green-500');
+      b.classList.add('text-gray-400', 'border-gray-300');
+    }
+  });
+  updateACSResult();
+}
+
+function updateACSResult() {
+  let total = 0, count = 0;
+  document.querySelectorAll('.acs-item').forEach(el => {
+    const activeBtns = el.querySelectorAll('.acs-btn.text-white');
+    if (activeBtns.length > 0) {
+      total += activeBtns.length;
+      count++;
+    }
+  });
+  document.getElementById('acs-result').textContent = total + ' / 42';
+}
+
+// Show home by default
+showSection('home');
+</script>
+</body>
+</html>
