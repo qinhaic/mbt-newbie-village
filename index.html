@@ -93,37 +93,37 @@ html { scroll-behavior: smooth; }
     <p class="text-gray-500 text-center mb-12 max-w-2xl mx-auto">从心智化的基本概念出发，逐级深入非心智化模式、心智位置、治疗师姿态，最终整合到临床案例中。</p>
 
     <div class="grid md:grid-cols-3 gap-6">
-      <div class="level-card bg-white rounded-2xl p-6 border border-gray-100">
+      <div class="level-card bg-white rounded-2xl p-6 border border-gray-100" onclick="showSection('level1')" style="cursor:pointer;">
         <div class="w-10 h-10 bg-mbt-blue rounded-xl flex items-center justify-center text-white font-bold mb-4">L1</div>
         <h3 class="font-bold text-lg mb-2">什么是心智化</h3>
         <p class="text-gray-600 text-sm mb-3">心智化的定义、Fonagy的理论起源、四个维度的基本框架。</p>
         <span class="text-mbt-blue text-sm font-medium">核心概念 →</span>
       </div>
-      <div class="level-card bg-white rounded-2xl p-6 border border-gray-100">
+      <div class="level-card bg-white rounded-2xl p-6 border border-gray-100" onclick="showSection('level2')" style="cursor:pointer;">
         <div class="w-10 h-10 bg-mbt-orange rounded-xl flex items-center justify-center text-white font-bold mb-4">L2</div>
         <h3 class="font-bold text-lg mb-2">三个非心智化模式</h3>
         <p class="text-gray-600 text-sm mb-3">精神等同、假装模式、目的论模式——临床识别与干预。</p>
         <span class="text-mbt-orange text-sm font-medium">模式识别 →</span>
       </div>
-      <div class="level-card bg-white rounded-2xl p-6 border border-gray-100">
+      <div class="level-card bg-white rounded-2xl p-6 border border-gray-100" onclick="showSection('level3')" style="cursor:pointer;">
         <div class="w-10 h-10 bg-mbt-green rounded-xl flex items-center justify-center text-white font-bold mb-4">L3</div>
         <h3 class="font-bold text-lg mb-2">I/Me/We 心智位</h3>
         <p class="text-gray-600 text-sm mb-3">主体自我、客体自我、共享意向性——从个体到关系的临床轨迹。</p>
         <span class="text-mbt-green text-sm font-medium">心智位置 →</span>
       </div>
-      <div class="level-card bg-white rounded-2xl p-6 border border-gray-100">
+      <div class="level-card bg-white rounded-2xl p-6 border border-gray-100" onclick="showSection('level4')" style="cursor:pointer;">
         <div class="w-10 h-10 bg-mbt-purple rounded-xl flex items-center justify-center text-white font-bold mb-4">L4</div>
         <h3 class="font-bold text-lg mb-2">治疗师姿态</h3>
         <p class="text-gray-600 text-sm mb-3">核心态度、17项干预原则、8大能力领域。</p>
         <span class="text-mbt-purple text-sm font-medium">核心技术 →</span>
       </div>
-      <div class="level-card bg-white rounded-2xl p-6 border border-gray-100">
+      <div class="level-card bg-white rounded-2xl p-6 border border-gray-100" onclick="showSection('level5')" style="cursor:pointer;">
         <div class="w-10 h-10 bg-mbt-red rounded-xl flex items-center justify-center text-white font-bold mb-4">L5</div>
         <h3 class="font-bold text-lg mb-2">MBT-ACS 自检</h3>
         <p class="text-gray-600 text-sm mb-3">依从性与能力量表的简化版本，用于自我评估与反思。</p>
         <span class="text-mbt-red text-sm font-medium">自我评估 →</span>
       </div>
-      <div class="level-card bg-white rounded-2xl p-6 border border-gray-100">
+      <div class="level-card bg-white rounded-2xl p-6 border border-gray-100" onclick="showSection('level6')" style="cursor:pointer;">
         <div class="w-10 h-10 bg-mbt-teal rounded-xl flex items-center justify-center text-white font-bold mb-4">L6</div>
         <h3 class="font-bold text-lg mb-2">案例整合实践</h3>
         <p class="text-gray-600 text-sm mb-3">将全部知识整合到临床案例中，学习如何在实际对话中运用MBT。</p>
@@ -305,6 +305,12 @@ html { scroll-behavior: smooth; }
       </div>
     </div>
 
+    <!-- 免责声明 -->
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 text-xs text-gray-600 leading-relaxed">
+      <p><b>📋 免责声明</b></p>
+      <p>1. 本网站内容是自己学习MBT的笔记整合，如有谬误，请联系作者：<a href="mailto:qin_hai@189.cn" class="text-mbt-blue underline font-medium">qin_hai@189.cn</a></p>
+      <p>2. 网页所使用的案例系AI提供，如有雷同，纯属巧合。</p>
+    </div>
     <!-- 关卡总结和导航 -->
     <div class="flex items-center justify-between">
       <a href="#" onclick="showSection('home')" class="text-gray-500 hover:text-gray-700">← 返回首页</a>
@@ -585,8 +591,15 @@ html { scroll-behavior: smooth; }
       <p class="text-sm text-gray-500 text-center">MBT治疗师的任务是识别这些模式切换，并在每次切换发生时将干预焦点拉回到心智化本身。</p>
     </div>
 
+    <!-- 免责声明 -->
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 text-xs text-gray-600 leading-relaxed">
+      <p><b>📋 免责声明</b></p>
+      <p>1. 本网站内容是自己学习MBT的笔记整合，如有谬误，请联系作者：<a href="mailto:qin_hai@189.cn" class="text-mbt-blue underline font-medium">qin_hai@189.cn</a></p>
+      <p>2. 网页所使用的案例系AI提供，如有雷同，纯属巧合。</p>
+    </div>
     <div class="flex items-center justify-between">
       <a href="#" onclick="showSection('level1')" class="text-gray-500 hover:text-gray-700">← 返回第1关</a>
+      <a href="#" onclick="showSection('home')" class="text-gray-400 hover:text-gray-600 text-sm">返回首页</a>
       <a href="#" onclick="showSection('level3')" class="px-6 py-3 bg-mbt-orange text-white rounded-xl font-bold hover:bg-orange-600 transition">进入第3关：三种心智位 →</a>
     </div>
   </div>
@@ -723,8 +736,15 @@ html { scroll-behavior: smooth; }
       </div>
     </div>
 
+    <!-- 免责声明 -->
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 text-xs text-gray-600 leading-relaxed">
+      <p><b>📋 免责声明</b></p>
+      <p>1. 本网站内容是自己学习MBT的笔记整合，如有谬误，请联系作者：<a href="mailto:qin_hai@189.cn" class="text-mbt-blue underline font-medium">qin_hai@189.cn</a></p>
+      <p>2. 网页所使用的案例系AI提供，如有雷同，纯属巧合。</p>
+    </div>
     <div class="flex items-center justify-between">
       <a href="#" onclick="showSection('level2')" class="text-gray-500 hover:text-gray-700">← 返回第2关</a>
+      <a href="#" onclick="showSection('home')" class="text-gray-400 hover:text-gray-600 text-sm">返回首页</a>
       <a href="#" onclick="showSection('level4')" class="px-6 py-3 bg-mbt-green text-white rounded-xl font-bold hover:bg-emerald-600 transition">进入第4关：治疗师姿态 →</a>
     </div>
   </div>
@@ -1016,8 +1036,15 @@ html { scroll-behavior: smooth; }
       </div>
     </div>
 
+    <!-- 免责声明 -->
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 text-xs text-gray-600 leading-relaxed">
+      <p><b>📋 免责声明</b></p>
+      <p>1. 本网站内容是自己学习MBT的笔记整合，如有谬误，请联系作者：<a href="mailto:qin_hai@189.cn" class="text-mbt-blue underline font-medium">qin_hai@189.cn</a></p>
+      <p>2. 网页所使用的案例系AI提供，如有雷同，纯属巧合。</p>
+    </div>
     <div class="flex items-center justify-between">
       <a href="#" onclick="showSection('level3')" class="text-gray-500 hover:text-gray-700">← 返回第3关</a>
+      <a href="#" onclick="showSection('home')" class="text-gray-400 hover:text-gray-600 text-sm">返回首页</a>
       <a href="#" onclick="showSection('level5')" class="px-6 py-3 bg-mbt-purple text-white rounded-xl font-bold hover:bg-indigo-600 transition">进入第5关：ACS自检 →</a>
     </div>
   </div>
@@ -1212,8 +1239,15 @@ html { scroll-behavior: smooth; }
       </div>
     </div>
 
+    <!-- 免责声明 -->
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 text-xs text-gray-600 leading-relaxed">
+      <p><b>📋 免责声明</b></p>
+      <p>1. 本网站内容是自己学习MBT的笔记整合，如有谬误，请联系作者：<a href="mailto:qin_hai@189.cn" class="text-mbt-blue underline font-medium">qin_hai@189.cn</a></p>
+      <p>2. 网页所使用的案例系AI提供，如有雷同，纯属巧合。</p>
+    </div>
     <div class="flex items-center justify-between">
       <a href="#" onclick="showSection('level4')" class="text-gray-500 hover:text-gray-700">← 返回第4关</a>
+      <a href="#" onclick="showSection('home')" class="text-gray-400 hover:text-gray-600 text-sm">返回首页</a>
       <a href="#" onclick="showSection('level6')" class="px-6 py-3 bg-mbt-red text-white rounded-xl font-bold hover:bg-rose-600 transition">进入第6关：案例整合 →</a>
     </div>
   </div>
@@ -1427,6 +1461,12 @@ html { scroll-behavior: smooth; }
       </div>
     </div>
 
+    <!-- 免责声明 -->
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 text-xs text-gray-600 leading-relaxed">
+      <p><b>📋 免责声明</b></p>
+      <p>1. 本网站内容是自己学习MBT的笔记整合，如有谬误，请联系作者：<a href="mailto:qin_hai@189.cn" class="text-mbt-blue underline font-medium">qin_hai@189.cn</a></p>
+      <p>2. 网页所使用的案例系AI提供，如有雷同，纯属巧合。</p>
+    </div>
     <div class="flex items-center justify-between">
       <a href="#" onclick="showSection('level5')" class="text-gray-500 hover:text-gray-700">← 返回第5关</a>
       <a href="#" onclick="showSection('home')" class="px-6 py-3 bg-mbt-teal text-white rounded-xl font-bold hover:bg-teal-600 transition">返回首页</a>
